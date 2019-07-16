@@ -1,0 +1,51 @@
+{
+  "title": "mini-auth init options",
+  "description": "小程序授权初始化参数类型",
+  "type": "object",
+  "properties": {
+    "withCredentials": {
+      "type": "boolean"
+    },
+    "env": {
+      "type": "string",
+      "enum": ["weapp", "aliapp", "swan", "ttapp"]
+    },
+    "requestConfig": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "OPTIONS",
+            "options",
+            "GET",
+            "get",
+            "HEAD",
+            "head",
+            "POST",
+            "post",
+            "PUT",
+            "put",
+            "DELETE",
+            "delete",
+            "TRACE",
+            "trace",
+            "CONNECT",
+            "connect"
+          ]
+        },
+        "headers": {
+          "type": "object"
+        },
+        "timeout": {
+          "type": "number",
+          "default": 10000
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

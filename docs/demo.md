@@ -9,7 +9,7 @@ npm install -S mini-auth
 在需要使用的文件里面引入包：
 
 ```javascript
-import { miniAuth } from 'mini-auth';
+import { miniAuth } from 'miniapp-auth';
 ```
 
 初始化`mini-auth`:

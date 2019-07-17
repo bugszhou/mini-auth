@@ -3,7 +3,7 @@
 先安装包：
 
 ```bash
-npm install -S mini-auth
+npm install -S miniapp-auth
 ```
 
 在需要使用的文件里面引入包：

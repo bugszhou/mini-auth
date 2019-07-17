@@ -11,9 +11,15 @@ module.exports = {
   },
   plugins: ['import'],
   extends: ['airbnb'],
-  globals: {},
+  globals: {
+    wx: true,
+    swan: true,
+    my: true,
+    tt: true,
+  },
   // add your custom rules here
   rules: {
+    'prefer-promise-reject-errors': 0,
     'no-console': 0,
     'linebreak-style': 0,
     // not require constant expressions in conditions

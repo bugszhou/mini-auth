@@ -1,4 +1,4 @@
-import weappStorage from '../weapp/storage';
+import weapp from '../weapp/storage';
 
 export function setStorageSync({ env } = { env: 'weapp' }) {
   return function selfSetStorageSync(key = '', data = '') {
@@ -9,7 +9,7 @@ export function setStorageSync({ env } = { env: 'weapp' }) {
       case 'ttapp':
       case 'weapp':
       default:
-        weappStorage.setStorageSync(key, data);
+        weapp.setStorageSync(key, data);
       }
     } catch (e) {
       throw e;
@@ -19,6 +19,7 @@ export function setStorageSync({ env } = { env: 'weapp' }) {
 
 export function getStorageSync({ env } = { env: 'weapp' }) {
   return function selfGetStorageSync(key = '') {
+    let data = null;
     try {
       switch (env) {
       case 'aliapp':
@@ -26,11 +27,12 @@ export function getStorageSync({ env } = { env: 'weapp' }) {
       case 'ttapp':
       case 'weapp':
       default:
-        weappStorage.getStorageSync(key);
+        data = weapp.getStorageSync(key);
       }
     } catch (e) {
       throw e;
     }
+    return data;
   };
 }
 
@@ -43,7 +45,7 @@ export function removeStorageSync({ env } = { env: 'weapp' }) {
       case 'ttapp':
       case 'weapp':
       default:
-        weappStorage.removeStorageSync(key);
+        weapp.removeStorageSync(key);
       }
     } catch (e) {
       throw e;

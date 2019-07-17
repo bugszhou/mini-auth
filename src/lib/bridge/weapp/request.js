@@ -7,7 +7,7 @@
  * @param fail  接口调用失败的回调函数
  * @param complete  接口调用结束的回调函数（调用成功、失败都会执行）
  */
-import response from '../request/response';
+import response from '../../core/response';
 
 export default function({
   url, data, headers, method,

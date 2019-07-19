@@ -1,10 +1,16 @@
 import weapp from '../weapp/storage';
+import aliapp from '../aliapp/storage';
 
 export function setStorageSync({ env } = { env: 'weapp' }) {
   return function selfSetStorageSync(key = '', data = '') {
     try {
       switch (env) {
       case 'aliapp':
+        aliapp.setStorageSync({
+          key,
+          data,
+        });
+        break;
       case 'swan':
       case 'ttapp':
       case 'weapp':
@@ -23,6 +29,10 @@ export function getStorageSync({ env } = { env: 'weapp' }) {
     try {
       switch (env) {
       case 'aliapp':
+        data = aliapp.getStorageSync({
+          key,
+        }).data;
+        break;
       case 'swan':
       case 'ttapp':
       case 'weapp':
@@ -41,6 +51,10 @@ export function removeStorageSync({ env } = { env: 'weapp' }) {
     try {
       switch (env) {
       case 'aliapp':
+        aliapp.removeStorageSync({
+          key,
+        });
+        break;
       case 'swan':
       case 'ttapp':
       case 'weapp':

@@ -95,7 +95,7 @@ class MiniAuth extends Base {
 
     function selfSet2Storage(retry) {
       try {
-        setStorageSync(this.#config.env)(storageData.key, storageData.data);
+        setStorageSync({ env: this.#config.env })(storageData.key, storageData.data);
       } catch (e) {
         console.error(e);
         if (retry > 0) {
@@ -112,7 +112,7 @@ class MiniAuth extends Base {
   getDataFromStorage(type = TOKEN_TYPE) {
     let data = null;
     try {
-      data = getStorageSync(this.#config.env)(this.#storageKey(type));
+      data = getStorageSync({ env: this.#config.env })(this.#storageKey(type));
     } catch (e) {
       console.error(e);
     }
@@ -124,7 +124,7 @@ class MiniAuth extends Base {
    */
   clearStorage(type = TOKEN_TYPE) {
     try {
-      removeStorageSync(this.#config.env)(this.#storageKey(type));
+      removeStorageSync({ env: this.#config.env })(this.#storageKey(type));
     } catch (e) {
       console.error(e);
     }
@@ -193,7 +193,7 @@ class MiniAuth extends Base {
   /**
    * 请求服务端获取token
    */
-  getToken({ isRefresh } = { isRefresh: false }) {
+  getToken({ isRefresh, scopes } = { isRefresh: false }) {
     return new Promise((resolve, reject) => {
       //
       if (this.#isTokenReq) {
@@ -228,6 +228,7 @@ class MiniAuth extends Base {
       this.#isTokenReq = true;
       login({
         env,
+        scopes,
       })
         .then(res => {
           this.tokenReqData.jsCode = res.jsCode;

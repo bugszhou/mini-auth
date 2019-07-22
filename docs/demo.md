@@ -73,3 +73,9 @@ auth.getToken()
       });
 ```
 
+修改存储有效期
+
+```javascript
+auth.setTokenExpires(3200 * 1000); // 单位ms
+```
+

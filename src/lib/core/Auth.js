@@ -175,6 +175,14 @@ class MiniAuth extends Base {
     return true;
   }
 
+  setTokenExpires(t = 0) {
+    if (!t || isNaN(t)) {
+      t = 6800 * 1000;
+    }
+
+    this.#expires = +t;
+  }
+
   /**
    * 执行队列
    */

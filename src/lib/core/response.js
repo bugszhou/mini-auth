@@ -12,7 +12,7 @@ export default function response(res = {}) {
   return {
     errCode: res.errCode || 0,
     errMsg: errCode === 0 ? '' : (res.errMsg || JSON.stringify(res)),
-    status: res.statusCode || -1,
+    status: res.statusCode || res.status || -1,
     headers: res.header || null,
     data: res.data || null,
   };

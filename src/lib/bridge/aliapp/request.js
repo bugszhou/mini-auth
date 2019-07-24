@@ -26,16 +26,16 @@ export default function({
         resolve(response({ errCode: 0, ...res }));
       },
       fail: (err) => {
-        let errCode = 5003;
+        let errCode = 5006;
         if (err.errMsg) {
           const errMsg = err.errMsg.toLowerCase();
           if (errMsg.indexOf('timeout') > -1) {
-            errCode = 5001;
+            errCode = 5007;
           } else {
-            errCode = 5002;
+            errCode = 5008;
           }
         } else {
-          errCode = 5003;
+          errCode = 5006;
         }
         reject(response({ errCode, ...err }));
       },

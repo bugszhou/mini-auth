@@ -22,7 +22,7 @@ export default function({ scopes } = { scopes: ['auth_base'] }) {
       },
       fail: (err) => {
         reject({
-          errCode: 5000,
+          errCode: 5009,
           errMsg: err.errMsg || JSON.stringify(err),
           jsCode: '',
         });

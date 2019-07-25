@@ -7,6 +7,6 @@
  */
 export default {
   timeout: 20000,
-  scopes: 'auth_base',
+  scopes: ['auth_base'],
   force: true,
 };

@@ -267,12 +267,12 @@ class MiniAuth extends Base {
         .then(resData => {
           resolve(resData);
           this.runQueues(null, resData);
+          this.#isTokenReq = false;
+          this.#waitQueues = [];
         })
         .catch(err => {
           reject(err);
           this.runQueues(err);
-        })
-        .finally(() => {
           this.#isTokenReq = false;
           this.#waitQueues = [];
         });

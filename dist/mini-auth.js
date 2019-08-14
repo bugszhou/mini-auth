@@ -2317,11 +2317,30 @@
 
   var merge_1 = merge;
 
-  var env=["weapp","aliapp","swan","ttapp"];
+  var env = ['weapp', 'aliapp', 'swan', 'ttapp'];
 
-  var method=["OPTIONS","options","GET","get","HEAD","head","POST","post","PUT","put","DELETE","delete","TRACE","trace","CONNECT","connect"];
+  var method = ['OPTIONS', 'options', 'GET', 'get', 'HEAD', 'head', 'POST', 'post', 'PUT', 'put', 'DELETE', 'delete', 'TRACE', 'trace', 'CONNECT', 'connect'];
 
-  function checkOpts(){var opts=0<arguments.length&&arguments[0]!==void 0?arguments[0]:{};return PropTypes.checkPropTypes({withCredentials:PropTypes.bool.isRequired,env:PropTypes.oneOf(env),appid:PropTypes.string,tokenReqConfig:PropTypes.shape({url:PropTypes.string,method:PropTypes.oneOf(method).isRequired,headers:PropTypes.object,timeout:PropTypes.number}),userInfoReqConfig:PropTypes.shape({url:PropTypes.string,method:PropTypes.oneOf(method).isRequired,headers:PropTypes.object,timeout:PropTypes.number})},opts)}
+  function checkOpts() {
+    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    return PropTypes.checkPropTypes({
+      withCredentials: PropTypes.bool.isRequired,
+      env: PropTypes.oneOf(env),
+      appid: PropTypes.string,
+      tokenReqConfig: PropTypes.shape({
+        url: PropTypes.string,
+        method: PropTypes.oneOf(method).isRequired,
+        headers: PropTypes.object,
+        timeout: PropTypes.number
+      }),
+      userInfoReqConfig: PropTypes.shape({
+        url: PropTypes.string,
+        method: PropTypes.oneOf(method).isRequired,
+        headers: PropTypes.object,
+        timeout: PropTypes.number
+      })
+    }, opts);
+  }
 
   var _iterStep = function (done, value) {
     return { value: value, done: !!done };
@@ -4669,9 +4688,95 @@
 
   var classPrivateFieldSet = _classPrivateFieldSet;
 
-  var Base=function(_EventEmitter){function Base(){var _this;return classCallCheck(this,Base),_this=possibleConstructorReturn(this,getPrototypeOf$2(Base).call(this)),_config.set(assertThisInitialized(_this),{writable:!0,value:{}}),_waitQueues.set(assertThisInitialized(_this),{writable:!0,value:[]}),_tokenMiddles.set(assertThisInitialized(_this),{writable:!0,value:[]}),_userMiddles.set(assertThisInitialized(_this),{writable:!0,value:[]}),_this}return inherits(Base,_EventEmitter),createClass(Base,[{key:"config",value:function config(){}},{key:"queue",value:function queue(){}},{key:"use",value:function use(){}},{key:"getToken",value:function getToken(){var _ref=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{isRefresh:!1,withCredentials:!0},isRefresh=_ref.isRefresh,withCredentials=_ref.withCredentials;}},{key:"getUserInfo",value:function getUserInfo(){var _ref2=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{},rawData=_ref2.rawData,signature=_ref2.signature,encryptedData=_ref2.encryptedData,iv=_ref2.iv;}},{key:"addEventListener",value:function addEventListener(){}}]),Base}(EventEmitter),_config=new weakMap$1,_waitQueues=new weakMap$1,_tokenMiddles=new weakMap$1,_userMiddles=new weakMap$1;
+  var Base = function (_EventEmitter) {
+    inherits(Base, _EventEmitter);
 
-  var evtNameScope="MINI_AUTH:token:";var TOKEN_BEFORE_REFRESH="".concat(evtNameScope,"beforeRefresh");var TOKEN_AFTER_REFRESH="".concat(evtNameScope,"afterRefresh");var TOKEN_BEFORE_CACHE="".concat(evtNameScope,"beforeCache");var TOKEN_AFTER_CACHE="".concat(evtNameScope,"afterCache");var TOKEN_EXPIRED="".concat(evtNameScope,"expired");var TOKEN_BEFORE_LOGIN="".concat(evtNameScope,"beforeLogin");var TOKEN_AFTER_LOGIN="".concat(evtNameScope,"afterLogin");var TOKEN_BEFORE_REQUEST="".concat(evtNameScope,"beforeRequest");var TOKEN_AFTER_REQUEST="".concat(evtNameScope,"afterRequest");
+    function Base() {
+      var _this;
+
+      classCallCheck(this, Base);
+
+      _this = possibleConstructorReturn(this, getPrototypeOf$2(Base).call(this));
+
+      _config.set(assertThisInitialized(_this), {
+        writable: true,
+        value: {}
+      });
+
+      _waitQueues.set(assertThisInitialized(_this), {
+        writable: true,
+        value: []
+      });
+
+      _tokenMiddles.set(assertThisInitialized(_this), {
+        writable: true,
+        value: []
+      });
+
+      _userMiddles.set(assertThisInitialized(_this), {
+        writable: true,
+        value: []
+      });
+
+      return _this;
+    }
+
+    createClass(Base, [{
+      key: "config",
+      value: function config() {}
+    }, {
+      key: "queue",
+      value: function queue() {}
+    }, {
+      key: "use",
+      value: function use() {
+      }
+    }, {
+      key: "getToken",
+      value: function getToken() {
+        var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+          isRefresh: false,
+          withCredentials: true
+        },
+            isRefresh = _ref.isRefresh,
+            withCredentials = _ref.withCredentials;
+      }
+    }, {
+      key: "getUserInfo",
+      value: function getUserInfo() {
+        var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+            rawData = _ref2.rawData,
+            signature = _ref2.signature,
+            encryptedData = _ref2.encryptedData,
+            iv = _ref2.iv;
+      }
+    }, {
+      key: "addEventListener",
+      value: function addEventListener(evt) {
+      }
+    }]);
+
+    return Base;
+  }(EventEmitter);
+
+  var _config = new weakMap$1();
+
+  var _waitQueues = new weakMap$1();
+
+  var _tokenMiddles = new weakMap$1();
+
+  var _userMiddles = new weakMap$1();
+
+  var evtNameScope = 'MINI_AUTH:token:';
+  var TOKEN_BEFORE_REFRESH = "".concat(evtNameScope, "beforeRefresh");
+  var TOKEN_AFTER_REFRESH = "".concat(evtNameScope, "afterRefresh");
+  var TOKEN_BEFORE_CACHE = "".concat(evtNameScope, "beforeCache");
+  var TOKEN_AFTER_CACHE = "".concat(evtNameScope, "afterCache");
+  var TOKEN_EXPIRED = "".concat(evtNameScope, "expired");
+  var TOKEN_BEFORE_LOGIN = "".concat(evtNameScope, "beforeLogin");
+  var TOKEN_AFTER_LOGIN = "".concat(evtNameScope, "afterLogin");
+  var TOKEN_BEFORE_REQUEST = "".concat(evtNameScope, "beforeRequest");
+  var TOKEN_AFTER_REQUEST = "".concat(evtNameScope, "afterRequest");
 
   var $JSON$1 = _core.JSON || (_core.JSON = { stringify: JSON.stringify });
   var stringify = function stringify(it) { // eslint-disable-line no-unused-vars
@@ -4689,43 +4794,883 @@
 
   var assign$1 = assign;
 
-  function response(){var res=0<arguments.length&&arguments[0]!==void 0?arguments[0]:{},errCode=res.errCode||0;return {errCode:res.errCode||0,errMsg:0===errCode?"":res.errMsg||stringify$1(res),status:res.statusCode||res.status||-1,headers:res.header||null,data:res.data||null}}
+  function response() {
+    var res = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var errCode = res.errCode || 0;
+    return {
+      errCode: res.errCode || 0,
+      errMsg: errCode === 0 ? '' : res.errMsg || stringify$1(res),
+      status: res.statusCode || res.status || -1,
+      headers: res.header || null,
+      data: res.data || null
+    };
+  }
 
-  var Middleware=function(){function Middleware(){classCallCheck(this,Middleware),defineProperty$4(this,"context",{}),defineProperty$4(this,"middleware",[]);}return createClass(Middleware,[{key:"createContext",value:function createContext(){var context=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{},ctx=create$1(this.context);return assign$1(ctx,context)}},{key:"dispatch",value:function dispatch(){var ctx=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{},middleware=1<arguments.length?arguments[1]:void 0,context=this.createContext(ctx),fnMiddleware=this.runMiddleware(middleware||this.middleware);return fnMiddleware(context)}},{key:"runMiddleware",value:function runMiddleware(){var middleware=0<arguments.length&&void 0!==arguments[0]?arguments[0]:[];return function(ctx,next){var index=-1;return new promise$1(function(resolve,reject){function dispatch(idx,error){if(idx<=index)return reject(response({errCode:5004,errMsg:"next() called multiple times"}));if(error)return reject(error);index=idx;var middle=middleware[index];if(index===middleware.length&&(middle=next),!middle)return resolve(ctx);try{return middle(ctx,dispatch.bind(null,index+1))}catch(err){return reject(response({errCode:5005,errMsg:stringify$1(err)}))}}dispatch(0,null);})}}},{key:"use",value:function use(){var middle=0<arguments.length&&void 0!==arguments[0]?arguments[0]:function(){};if("function"!=typeof middle)throw new Error("middle must be function!");this.middleware.push(middle);}},{key:"useBatch",value:function useBatch(){var _this=this,middles=0<arguments.length&&void 0!==arguments[0]?arguments[0]:[];middles.forEach(function(middle){_this.use(middle);});}}]),Middleware}();
+  var Middleware = function () {
+    function Middleware() {
+      classCallCheck(this, Middleware);
 
-  function checkOpts$1(){var opts=0<arguments.length&&arguments[0]!==void 0?arguments[0]:{};return PropTypes.checkPropTypes({timeout:PropTypes.number,scopes:PropTypes.array,force:PropTypes.bool},opts)}
+      defineProperty$4(this, "context", {});
 
-  var defaultConfig = {timeout:2e4,scopes:["auth_base"],force:!0};
+      defineProperty$4(this, "middleware", []);
+    }
 
-  function weappLogin(){var _ref=0<arguments.length&&arguments[0]!==void 0?arguments[0]:{timeout:2e4},timeout=_ref.timeout;return new promise$1(function(resolve,reject){wx.login({timeout:timeout,success:function success(res){resolve({errCode:0,errMsg:"",jsCode:res.code});},fail:function fail(err){reject({errCode:5e3,errMsg:err.errMsg||stringify$1(err),jsCode:""});}});})}
+    createClass(Middleware, [{
+      key: "createContext",
+      value: function createContext() {
+        var context = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-  function getGlobal(){return "undefined"!=typeof wx&&wx?wx:"undefined"!=typeof my&&my?my:"undefined"!=typeof swan&&swan?swan:"undefined"!=typeof tt&&tt?tt:global}
+        var ctx = create$1(this.context);
 
-  var gloableObj=getGlobal();function myLogin(){var _ref=0<arguments.length&&arguments[0]!==void 0?arguments[0]:{scopes:["auth_base"]},scopes=_ref.scopes;return new promise$1(function(resolve,reject){gloableObj.getAuthCode({scopes:scopes,success:function success(res){resolve({errCode:0,errMsg:"",jsCode:res.authCode});},fail:function fail(err){reject({errCode:5009,errMsg:err.errMsg||stringify$1(err),jsCode:""});}});})}
+        return assign$1(ctx, context);
+      }
+    }, {
+      key: "dispatch",
+      value: function dispatch() {
+        var ctx = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+        var middleware = arguments.length > 1 ? arguments[1] : undefined;
+        var context = this.createContext(ctx),
+            fnMiddleware = this.runMiddleware(middleware || this.middleware);
+        return fnMiddleware(context);
+      }
+    }, {
+      key: "runMiddleware",
+      value: function runMiddleware() {
+        var middleware = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+        return function (ctx, next) {
+          var index = -1;
+          return new promise$1(function (resolve, reject) {
+            dispatch(0, null);
 
-  function getJsCode(){var _ref=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{env:"weapp"},timeout=_ref.timeout,env=_ref.env,scopes=_ref.scopes,force=_ref.force,reqPromise=null;switch(checkOpts$1(merge_1(defaultConfig,{timeout:timeout,scopes:scopes,force:force})),env){case"aliapp":reqPromise=myLogin({scopes:scopes});break;case"swan":case"ttapp":case"weapp":default:reqPromise=weappLogin({timeout:timeout});}return reqPromise}
+            function dispatch(idx, error) {
+              if (idx <= index) {
+                return reject(response({
+                  errCode: 5004,
+                  errMsg: 'next() called multiple times'
+                }));
+              }
 
-  function checkOpts$2(){var opts=0<arguments.length&&arguments[0]!==void 0?arguments[0]:{};return PropTypes.checkPropTypes({url:PropTypes.string,data:PropTypes.object,headers:PropTypes.object,timeout:PropTypes.number,method:PropTypes.string},opts)}
+              if (error) {
+                return reject(error);
+              }
 
-  var defaultConfig$1 = {url:"",data:{},headers:{},timeout:3e4,method:"GET"};
+              index = idx;
+              var middle = middleware[index];
 
-  function ownKeys(object,enumerableOnly){var keys=keys$1(object);if(getOwnPropertySymbols$1){var symbols=getOwnPropertySymbols$1(object);enumerableOnly&&(symbols=symbols.filter(function(sym){return getOwnPropertyDescriptor$1(object,sym).enumerable})),keys.push.apply(keys,symbols);}return keys}function _objectSpread(target){for(var source,i=1;i<arguments.length;i++)source=null==arguments[i]?{}:arguments[i],i%2?ownKeys(source,!0).forEach(function(key){defineProperty$4(target,key,source[key]);}):getOwnPropertyDescriptors$1?defineProperties$1(target,getOwnPropertyDescriptors$1(source)):ownKeys(source).forEach(function(key){defineProperty$2(target,key,getOwnPropertyDescriptor$1(source,key));});return target}function weappReq(){var _ref=0<arguments.length&&arguments[0]!==void 0?arguments[0]:{method:"GET",data:{}},url=_ref.url,data=_ref.data,headers=_ref.headers,method=_ref.method;return new promise$1(function(resolve,reject){wx.request({url:url,data:data,header:headers,method:method,success:function success(res){resolve(response(_objectSpread({errCode:0},res)));},fail:function fail(err){var errCode=5003;if(err.errMsg){var errMsg=err.errMsg.toLowerCase();errCode=-1<errMsg.indexOf("timeout")?5001:5002;}else errCode=5003;reject(response(_objectSpread({errCode:errCode},err)));}});})}
+              if (index === middleware.length) {
+                middle = next;
+              }
 
-  function ownKeys$1(object,enumerableOnly){var keys=keys$1(object);if(getOwnPropertySymbols$1){var symbols=getOwnPropertySymbols$1(object);enumerableOnly&&(symbols=symbols.filter(function(sym){return getOwnPropertyDescriptor$1(object,sym).enumerable})),keys.push.apply(keys,symbols);}return keys}function _objectSpread$1(target){for(var source,i=1;i<arguments.length;i++)source=null==arguments[i]?{}:arguments[i],i%2?ownKeys$1(source,!0).forEach(function(key){defineProperty$4(target,key,source[key]);}):getOwnPropertyDescriptors$1?defineProperties$1(target,getOwnPropertyDescriptors$1(source)):ownKeys$1(source).forEach(function(key){defineProperty$2(target,key,getOwnPropertyDescriptor$1(source,key));});return target}var gloableObj$1=getGlobal();function myReq(){var _ref=0<arguments.length&&arguments[0]!==void 0?arguments[0]:{method:"GET",data:{}},url=_ref.url,data=_ref.data,headers=_ref.headers,method=_ref.method,timeout=_ref.timeout;return new promise$1(function(resolve,reject){gloableObj$1.request({url:url,data:data,headers:headers,method:method,timeout:timeout,success:function success(res){resolve(response(_objectSpread$1({errCode:0},res)));},fail:function fail(err){var errCode=5006;if(err.errMsg){var errMsg=err.errMsg.toLowerCase();errCode=-1<errMsg.indexOf("timeout")?5007:5008;}else errCode=5006;reject(response(_objectSpread$1({errCode:errCode},err)));}});})}
+              if (!middle) {
+                return resolve(ctx);
+              }
 
-  function request(){var _ref=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{env:"weapp"},url=_ref.url,timeout=_ref.timeout,data=_ref.data,headers=_ref.headers,method=_ref.method,env=_ref.env,reqPromise=null;switch(checkOpts$2(merge_1(defaultConfig$1,{url:url,timeout:timeout,data:data,headers:headers,method:method})),env){case"aliapp":reqPromise=myReq({url:url,data:data,headers:headers,method:method});break;case"swan":case"ttapp":case"weapp":default:reqPromise=weappReq({url:url,data:data,header:headers,method:method});}return reqPromise}
+              try {
+                return middle(ctx, dispatch.bind(null, index + 1));
+              } catch (err) {
+                return reject(response({
+                  errCode: 5005,
+                  errMsg: stringify$1(err)
+                }));
+              }
+            }
+          });
+        };
+      }
+    }, {
+      key: "use",
+      value: function use() {
+        var middle = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {};
 
-  var gloableObj$2=getGlobal();var weapp = {setStorageSync:gloableObj$2.setStorageSync.bind(gloableObj$2),getStorageSync:gloableObj$2.getStorageSync.bind(gloableObj$2),removeStorageSync:gloableObj$2.removeStorageSync.bind(gloableObj$2)};
+        if (typeof middle !== 'function') {
+          throw new Error('middle must be function!');
+        }
 
-  var gloableObj$3=getGlobal();var aliapp = {setStorageSync:gloableObj$3.setStorageSync.bind(gloableObj$3),getStorageSync:gloableObj$3.getStorageSync.bind(gloableObj$3),removeStorageSync:gloableObj$3.removeStorageSync.bind(gloableObj$3)};
+        this.middleware.push(middle);
+      }
+    }, {
+      key: "useBatch",
+      value: function useBatch() {
+        var _this = this;
 
-  function setStorageSync(){var _ref=0<arguments.length&&arguments[0]!==void 0?arguments[0]:{env:"weapp"},env=_ref.env;return function(){var key=0<arguments.length&&arguments[0]!==void 0?arguments[0]:"",data=1<arguments.length&&arguments[1]!==void 0?arguments[1]:"";try{switch(env){case"aliapp":aliapp.setStorageSync({key:key,data:data});break;case"swan":case"ttapp":case"weapp":default:weapp.setStorageSync(key,data);}}catch(e){throw e}}}function getStorageSync(){var _ref2=0<arguments.length&&arguments[0]!==void 0?arguments[0]:{env:"weapp"},env=_ref2.env;return function(){var key=0<arguments.length&&arguments[0]!==void 0?arguments[0]:"",data=null;try{switch(env){case"aliapp":data=aliapp.getStorageSync({key:key}).data;break;case"swan":case"ttapp":case"weapp":default:data=weapp.getStorageSync(key);}}catch(e){throw e}return data}}function removeStorageSync(){var _ref3=0<arguments.length&&arguments[0]!==void 0?arguments[0]:{env:"weapp"},env=_ref3.env;return function(){var key=0<arguments.length&&arguments[0]!==void 0?arguments[0]:"";try{switch(env){case"aliapp":aliapp.removeStorageSync({key:key});break;case"swan":case"ttapp":case"weapp":default:weapp.removeStorageSync(key);}}catch(e){throw e}}}
+        var middles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+        middles.forEach(function (middle) {
+          _this.use(middle);
+        });
+      }
+    }]);
 
-  function ownKeys$2(object,enumerableOnly){var keys=keys$1(object);if(getOwnPropertySymbols$1){var symbols=getOwnPropertySymbols$1(object);enumerableOnly&&(symbols=symbols.filter(function(sym){return getOwnPropertyDescriptor$1(object,sym).enumerable})),keys.push.apply(keys,symbols);}return keys}function _objectSpread$2(target){for(var source,i=1;i<arguments.length;i++)source=null==arguments[i]?{}:arguments[i],i%2?ownKeys$2(source,!0).forEach(function(key){defineProperty$4(target,key,source[key]);}):getOwnPropertyDescriptors$1?defineProperties$1(target,getOwnPropertyDescriptors$1(source)):ownKeys$2(source).forEach(function(key){defineProperty$2(target,key,getOwnPropertyDescriptor$1(source,key));});return target}function _classPrivateMethodGet(receiver,privateSet,fn){if(!privateSet.has(receiver))throw new TypeError("attempted to get private field on non-instance");return fn}var TOKEN_TYPE="token",AFTER_TOKEN_TYPE="afterToken",USER_TYPE="user",MiniAuth=function(_Base){function MiniAuth(){var _this,config=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{};return classCallCheck(this,MiniAuth),_this=possibleConstructorReturn(this,getPrototypeOf$2(MiniAuth).call(this)),_storageModel.add(assertThisInitialized(_this)),_storageKey.add(assertThisInitialized(_this)),_config$1.set(assertThisInitialized(_this),{writable:!0,value:{}}),_waitQueues$1.set(assertThisInitialized(_this),{writable:!0,value:[]}),_tokenMiddles$1.set(assertThisInitialized(_this),{writable:!0,value:[]}),_afterMiddles.set(assertThisInitialized(_this),{writable:!0,value:[]}),_userMiddles$1.set(assertThisInitialized(_this),{writable:!0,value:[]}),_expires.set(assertThisInitialized(_this),{writable:!0,value:6800*1e3}),_isTokenReq.set(assertThisInitialized(_this),{writable:!0,value:!1}),defineProperty$4(assertThisInitialized(_this),"tokenReqData",{}),defineProperty$4(assertThisInitialized(_this),"tokenResData",{}),_this.middleware=new Middleware,classPrivateFieldSet(assertThisInitialized(_this),_config$1,config),_this}return inherits(MiniAuth,_Base),createClass(MiniAuth,[{key:"use",value:function use(){var type=0<arguments.length&&void 0!==arguments[0]?arguments[0]:"",middleFn=1<arguments.length&&void 0!==arguments[1]?arguments[1]:function(){};if("function"==typeof middleFn)switch(type){case AFTER_TOKEN_TYPE:classPrivateFieldGet(this,_afterMiddles).push(middleFn);break;case USER_TYPE:classPrivateFieldGet(this,_userMiddles$1).push(middleFn);break;case TOKEN_TYPE:default:classPrivateFieldGet(this,_tokenMiddles$1).push(middleFn);}}},{key:"set2Storage",value:function set2Storage(){function selfSet2Storage(retry){try{setStorageSync({env:classPrivateFieldGet(this,_config$1).env})(storageData.key,storageData.data);}catch(e){console.error(e),0<retry&&selfSet2Storage.call(this,retry-1);}return storageData.data}var type=0<arguments.length&&void 0!==arguments[0]?arguments[0]:TOKEN_TYPE,data=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{},storageData=_classPrivateMethodGet(this,_storageModel,_storageModel2).call(this,type,data);return selfSet2Storage.call(this,3)}},{key:"getDataFromStorage",value:function getDataFromStorage(){var type=0<arguments.length&&void 0!==arguments[0]?arguments[0]:TOKEN_TYPE,data=null;try{data=getStorageSync({env:classPrivateFieldGet(this,_config$1).env})(_classPrivateMethodGet(this,_storageKey,_storageKey2).call(this,type));}catch(e){console.error(e);}return data}},{key:"clearStorage",value:function clearStorage(){var type=0<arguments.length&&void 0!==arguments[0]?arguments[0]:TOKEN_TYPE;try{removeStorageSync({env:classPrivateFieldGet(this,_config$1).env})(_classPrivateMethodGet(this,_storageKey,_storageKey2).call(this,type));}catch(e){console.error(e);}}},{key:"isExpired",value:function isExpired(){var data=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{};if(data){var expirationTime=data.expirationTime;return !(expirationTime&&expirationTime>now$1())}return !0}},{key:"setTokenExpires",value:function setTokenExpires(){var t=0<arguments.length&&void 0!==arguments[0]?arguments[0]:0;(!t||isNaN(t))&&(t=1e3*6800),classPrivateFieldSet(this,_expires,+t);}},{key:"runQueues",value:function runQueues(err,data){if(classPrivateFieldGet(this,_waitQueues$1)&&isArray$2(classPrivateFieldGet(this,_waitQueues$1))){var len=classPrivateFieldGet(this,_waitQueues$1).length;classPrivateFieldGet(this,_waitQueues$1).splice(0,len).forEach(function(_ref){var resolve=_ref.resolve,reject=_ref.reject;return err?reject(err):resolve(data)});}}},{key:"getToken",value:function getToken(){var _this2=this,_ref2=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{isRefresh:!1},isRefresh=_ref2.isRefresh,scopes=_ref2.scopes;return new promise$1(function(resolve,reject){if(classPrivateFieldGet(_this2,_isTokenReq))return classPrivateFieldGet(_this2,_waitQueues$1).push({resolve:resolve,reject:reject});var env=classPrivateFieldGet(_this2,_config$1).env,tokenReqConfig=classPrivateFieldGet(_this2,_config$1).tokenReqConfig,url=tokenReqConfig.url,method=tokenReqConfig.method,storageData=null;if(isRefresh)_this2.emit(TOKEN_BEFORE_REFRESH),_this2.clearStorage(TOKEN_TYPE),_this2.emit(TOKEN_AFTER_REFRESH);else{if(storageData=_this2.getDataFromStorage(TOKEN_TYPE),storageData&&!_this2.isExpired(storageData))return _this2.emit(TOKEN_BEFORE_CACHE,storageData),setTimeout(function(){resolve(storageData),_this2.emit(TOKEN_AFTER_CACHE,storageData);});_this2.emit(TOKEN_EXPIRED),_this2.clearStorage(TOKEN_TYPE);}_this2.emit(TOKEN_BEFORE_LOGIN),classPrivateFieldSet(_this2,_isTokenReq,!0),getJsCode({env:env,scopes:scopes}).then(function(res){return _this2.tokenReqData.jsCode=res.jsCode,_this2.emit(TOKEN_AFTER_LOGIN,res),_this2.middleware.dispatch(_this2,classPrivateFieldGet(_this2,_tokenMiddles$1))}).then(function(ctx){return _this2.emit(TOKEN_BEFORE_REQUEST),request({env:env,url:url,method:method,data:_objectSpread$2({},ctx.tokenReqData)})}).then(function(res){return _this2.tokenResData=res,_this2.middleware.dispatch(_this2,classPrivateFieldGet(_this2,_afterMiddles))}).then(function(ctx){return _this2.emit(TOKEN_AFTER_REQUEST,ctx.tokenResData),_this2.set2Storage(TOKEN_TYPE,ctx.tokenResData)}).then(function(resData){resolve(resData),_this2.runQueues(null,resData);})["catch"](function(err){reject(err),_this2.runQueues(err);})["finally"](function(){classPrivateFieldSet(_this2,_isTokenReq,!1),classPrivateFieldSet(_this2,_waitQueues$1,[]);});})}},{key:"config",get:function get(){return classPrivateFieldGet(this,_config$1)}},{key:"queue",get:function get(){return this.waitQueues}}]),MiniAuth}(Base),_config$1=new weakMap$1,_waitQueues$1=new weakMap$1,_tokenMiddles$1=new weakMap$1,_afterMiddles=new weakMap$1,_userMiddles$1=new weakMap$1,_expires=new weakMap$1,_isTokenReq=new weakMap$1,_storageKey=new weakSet$1,_storageModel=new weakSet$1,_storageKey2=function(){var type=0<arguments.length&&arguments[0]!==void 0?arguments[0]:TOKEN_TYPE;return "MINI_AUTH:".concat(type,":").concat(classPrivateFieldGet(this,_config$1).appid)},_storageModel2=function(){var type=0<arguments.length&&arguments[0]!==void 0?arguments[0]:TOKEN_TYPE,data=1<arguments.length&&arguments[1]!==void 0?arguments[1]:{};return {key:_classPrivateMethodGet(this,_storageKey,_storageKey2).call(this,type),data:{data:data,expires:classPrivateFieldGet(this,_expires),expirationTime:now$1()+classPrivateFieldGet(this,_expires)}}};
+    return Middleware;
+  }();
 
-  var defaultConfig$2={withCredentials:!1,env:"weapp",appid:"mockAppid",tokenReqConfig:{url:"",method:"GET",headers:{"content-type":"application/json"},timeout:1e4},userInfoReqConfig:{url:"",method:"GET",headers:{"content-type":"application/json"},timeout:1e4}};
+  function checkOpts$1() {
+    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    return PropTypes.checkPropTypes({
+      timeout: PropTypes.number,
+      scopes: PropTypes.array,
+      force: PropTypes.bool
+    }, opts);
+  }
 
-  function createInstance(){var config=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{},opts=merge_1(defaultConfig$2,config);return checkOpts(opts),new MiniAuth(opts)}var miniAuth=createInstance(defaultConfig$2);miniAuth.create=createInstance;
+  var defaultConfig = {
+    timeout: 20000,
+    scopes: ['auth_base'],
+    force: true
+  };
+
+  function weappLogin () {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      timeout: 20000
+    },
+        timeout = _ref.timeout;
+
+    return new promise$1(function (resolve, reject) {
+      wx.login({
+        timeout: timeout,
+        success: function success(res) {
+          resolve({
+            errCode: 0,
+            errMsg: '',
+            jsCode: res.code
+          });
+        },
+        fail: function fail(err) {
+          reject({
+            errCode: 5000,
+            errMsg: err.errMsg || stringify$1(err),
+            jsCode: ''
+          });
+        }
+      });
+    });
+  }
+
+  function getGlobal () {
+    if (typeof wx !== 'undefined' && wx) {
+      return wx;
+    }
+
+    if (typeof my !== 'undefined' && my) {
+      return my;
+    }
+
+    if (typeof swan !== 'undefined' && swan) {
+      return swan;
+    }
+
+    if (typeof tt !== 'undefined' && tt) {
+      return tt;
+    }
+
+    return global;
+  }
+
+  var gloableObj = getGlobal();
+  function myLogin () {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      scopes: ['auth_base']
+    },
+        scopes = _ref.scopes;
+
+    return new promise$1(function (resolve, reject) {
+      gloableObj.getAuthCode({
+        scopes: scopes,
+        success: function success(res) {
+          resolve({
+            errCode: 0,
+            errMsg: '',
+            jsCode: res.authCode
+          });
+        },
+        fail: function fail(err) {
+          reject({
+            errCode: 5009,
+            errMsg: err.errMsg || stringify$1(err),
+            jsCode: ''
+          });
+        }
+      });
+    });
+  }
+
+  function getJsCode() {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      env: 'weapp'
+    },
+        timeout = _ref.timeout,
+        env = _ref.env,
+        scopes = _ref.scopes,
+        force = _ref.force;
+
+    var reqPromise = null;
+    checkOpts$1(merge_1(defaultConfig, {
+      timeout: timeout,
+      scopes: scopes,
+      force: force
+    }));
+
+    switch (env) {
+      case 'aliapp':
+        reqPromise = myLogin({
+          scopes: scopes
+        });
+        break;
+
+      case 'swan':
+      case 'ttapp':
+      case 'weapp':
+      default:
+        reqPromise = weappLogin({
+          timeout: timeout
+        });
+    }
+
+    return reqPromise;
+  }
+
+  function checkOpts$2() {
+    var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    return PropTypes.checkPropTypes({
+      url: PropTypes.string,
+      data: PropTypes.object,
+      headers: PropTypes.object,
+      timeout: PropTypes.number,
+      method: PropTypes.string
+    }, opts);
+  }
+
+  var defaultConfig$1 = {
+    url: '',
+    data: {},
+    headers: {},
+    timeout: 30000,
+    method: 'GET'
+  };
+
+  function ownKeys(object, enumerableOnly) { var keys = keys$1(object); if (getOwnPropertySymbols$1) { var symbols = getOwnPropertySymbols$1(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return getOwnPropertyDescriptor$1(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { defineProperty$4(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$1) { defineProperties$1(target, getOwnPropertyDescriptors$1(source)); } else { ownKeys(source).forEach(function (key) { defineProperty$2(target, key, getOwnPropertyDescriptor$1(source, key)); }); } } return target; }
+  function weappReq () {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      method: 'GET',
+      data: {}
+    },
+        url = _ref.url,
+        data = _ref.data,
+        headers = _ref.headers,
+        method = _ref.method;
+
+    return new promise$1(function (resolve, reject) {
+      wx.request({
+        url: url,
+        data: data,
+        header: headers,
+        method: method,
+        success: function success(res) {
+          resolve(response(_objectSpread({
+            errCode: 0
+          }, res)));
+        },
+        fail: function fail(err) {
+          var errCode = 5003;
+
+          if (err.errMsg) {
+            var errMsg = err.errMsg.toLowerCase();
+
+            if (errMsg.indexOf('timeout') > -1) {
+              errCode = 5001;
+            } else {
+              errCode = 5002;
+            }
+          } else {
+            errCode = 5003;
+          }
+
+          reject(response(_objectSpread({
+            errCode: errCode
+          }, err)));
+        }
+      });
+    });
+  }
+
+  function ownKeys$1(object, enumerableOnly) { var keys = keys$1(object); if (getOwnPropertySymbols$1) { var symbols = getOwnPropertySymbols$1(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return getOwnPropertyDescriptor$1(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$1(source, true).forEach(function (key) { defineProperty$4(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$1) { defineProperties$1(target, getOwnPropertyDescriptors$1(source)); } else { ownKeys$1(source).forEach(function (key) { defineProperty$2(target, key, getOwnPropertyDescriptor$1(source, key)); }); } } return target; }
+  var gloableObj$1 = getGlobal();
+  function myReq () {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      method: 'GET',
+      data: {}
+    },
+        url = _ref.url,
+        data = _ref.data,
+        headers = _ref.headers,
+        method = _ref.method,
+        timeout = _ref.timeout;
+
+    return new promise$1(function (resolve, reject) {
+      gloableObj$1.request({
+        url: url,
+        data: data,
+        headers: headers,
+        method: method,
+        timeout: timeout,
+        success: function success(res) {
+          resolve(response(_objectSpread$1({
+            errCode: 0
+          }, res)));
+        },
+        fail: function fail(err) {
+          var errCode = 5006;
+
+          if (err.errMsg) {
+            var errMsg = err.errMsg.toLowerCase();
+
+            if (errMsg.indexOf('timeout') > -1) {
+              errCode = 5007;
+            } else {
+              errCode = 5008;
+            }
+          } else {
+            errCode = 5006;
+          }
+
+          reject(response(_objectSpread$1({
+            errCode: errCode
+          }, err)));
+        }
+      });
+    });
+  }
+
+  function request() {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      env: 'weapp'
+    },
+        url = _ref.url,
+        timeout = _ref.timeout,
+        data = _ref.data,
+        headers = _ref.headers,
+        method = _ref.method,
+        env = _ref.env;
+
+    var reqPromise = null;
+    checkOpts$2(merge_1(defaultConfig$1, {
+      url: url,
+      timeout: timeout,
+      data: data,
+      headers: headers,
+      method: method
+    }));
+
+    switch (env) {
+      case 'aliapp':
+        reqPromise = myReq({
+          url: url,
+          data: data,
+          headers: headers,
+          method: method
+        });
+        break;
+
+      case 'swan':
+      case 'ttapp':
+      case 'weapp':
+      default:
+        reqPromise = weappReq({
+          url: url,
+          data: data,
+          header: headers,
+          method: method
+        });
+    }
+
+    return reqPromise;
+  }
+
+  var gloableObj$2 = getGlobal();
+  var weapp = {
+    setStorageSync: gloableObj$2.setStorageSync.bind(gloableObj$2),
+    getStorageSync: gloableObj$2.getStorageSync.bind(gloableObj$2),
+    removeStorageSync: gloableObj$2.removeStorageSync.bind(gloableObj$2)
+  };
+
+  var gloableObj$3 = getGlobal();
+  var aliapp = {
+    setStorageSync: gloableObj$3.setStorageSync.bind(gloableObj$3),
+    getStorageSync: gloableObj$3.getStorageSync.bind(gloableObj$3),
+    removeStorageSync: gloableObj$3.removeStorageSync.bind(gloableObj$3)
+  };
+
+  function setStorageSync() {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      env: 'weapp'
+    },
+        env = _ref.env;
+
+    return function selfSetStorageSync() {
+      var key = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+      try {
+        switch (env) {
+          case 'aliapp':
+            aliapp.setStorageSync({
+              key: key,
+              data: data
+            });
+            break;
+
+          case 'swan':
+          case 'ttapp':
+          case 'weapp':
+          default:
+            weapp.setStorageSync(key, data);
+        }
+      } catch (e) {
+        throw e;
+      }
+    };
+  }
+  function getStorageSync() {
+    var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      env: 'weapp'
+    },
+        env = _ref2.env;
+
+    return function selfGetStorageSync() {
+      var key = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+      var data = null;
+
+      try {
+        switch (env) {
+          case 'aliapp':
+            data = aliapp.getStorageSync({
+              key: key
+            }).data;
+            break;
+
+          case 'swan':
+          case 'ttapp':
+          case 'weapp':
+          default:
+            data = weapp.getStorageSync(key);
+        }
+      } catch (e) {
+        throw e;
+      }
+
+      return data;
+    };
+  }
+  function removeStorageSync() {
+    var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+      env: 'weapp'
+    },
+        env = _ref3.env;
+
+    return function selfRemoveStorageSync() {
+      var key = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+      try {
+        switch (env) {
+          case 'aliapp':
+            aliapp.removeStorageSync({
+              key: key
+            });
+            break;
+
+          case 'swan':
+          case 'ttapp':
+          case 'weapp':
+          default:
+            weapp.removeStorageSync(key);
+        }
+      } catch (e) {
+        throw e;
+      }
+    };
+  }
+
+  function ownKeys$2(object, enumerableOnly) { var keys = keys$1(object); if (getOwnPropertySymbols$1) { var symbols = getOwnPropertySymbols$1(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return getOwnPropertyDescriptor$1(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+  function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys$2(source, true).forEach(function (key) { defineProperty$4(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$1) { defineProperties$1(target, getOwnPropertyDescriptors$1(source)); } else { ownKeys$2(source).forEach(function (key) { defineProperty$2(target, key, getOwnPropertyDescriptor$1(source, key)); }); } } return target; }
+
+  function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
+  var TOKEN_TYPE = 'token',
+      AFTER_TOKEN_TYPE = 'afterToken',
+      USER_TYPE = 'user';
+
+  var MiniAuth = function (_Base) {
+    inherits(MiniAuth, _Base);
+
+    function MiniAuth() {
+      var _this;
+
+      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      classCallCheck(this, MiniAuth);
+
+      _this = possibleConstructorReturn(this, getPrototypeOf$2(MiniAuth).call(this));
+
+      _storageModel.add(assertThisInitialized(_this));
+
+      _storageKey.add(assertThisInitialized(_this));
+
+      _config$1.set(assertThisInitialized(_this), {
+        writable: true,
+        value: {}
+      });
+
+      _waitQueues$1.set(assertThisInitialized(_this), {
+        writable: true,
+        value: []
+      });
+
+      _tokenMiddles$1.set(assertThisInitialized(_this), {
+        writable: true,
+        value: []
+      });
+
+      _afterMiddles.set(assertThisInitialized(_this), {
+        writable: true,
+        value: []
+      });
+
+      _userMiddles$1.set(assertThisInitialized(_this), {
+        writable: true,
+        value: []
+      });
+
+      _expires.set(assertThisInitialized(_this), {
+        writable: true,
+        value: 6800 * 1000
+      });
+
+      _isTokenReq.set(assertThisInitialized(_this), {
+        writable: true,
+        value: false
+      });
+
+      defineProperty$4(assertThisInitialized(_this), "tokenReqData", {});
+
+      defineProperty$4(assertThisInitialized(_this), "tokenResData", {});
+
+      _this.middleware = new Middleware();
+
+      classPrivateFieldSet(assertThisInitialized(_this), _config$1, config);
+
+      return _this;
+    }
+
+    createClass(MiniAuth, [{
+      key: "use",
+      value: function use() {
+        var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+        var middleFn = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
+
+        if (typeof middleFn === 'function') {
+          switch (type) {
+            case AFTER_TOKEN_TYPE:
+              classPrivateFieldGet(this, _afterMiddles).push(middleFn);
+
+              break;
+
+            case USER_TYPE:
+              classPrivateFieldGet(this, _userMiddles$1).push(middleFn);
+
+              break;
+
+            case TOKEN_TYPE:
+            default:
+              classPrivateFieldGet(this, _tokenMiddles$1).push(middleFn);
+
+          }
+        }
+      }
+    }, {
+      key: "set2Storage",
+      value: function set2Storage() {
+        var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : TOKEN_TYPE;
+        var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+        var storageData = _classPrivateMethodGet(this, _storageModel, _storageModel2).call(this, type, data);
+
+        var retry = 3;
+        return selfSet2Storage.call(this, retry);
+
+        function selfSet2Storage(retry) {
+          try {
+            setStorageSync({
+              env: classPrivateFieldGet(this, _config$1).env
+            })(storageData.key, storageData.data);
+          } catch (e) {
+            console.error(e);
+
+            if (retry > 0) {
+              selfSet2Storage.call(this, retry - 1);
+            }
+          }
+
+          return storageData.data;
+        }
+      }
+    }, {
+      key: "getDataFromStorage",
+      value: function getDataFromStorage() {
+        var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : TOKEN_TYPE;
+        var data = null;
+
+        try {
+          data = getStorageSync({
+            env: classPrivateFieldGet(this, _config$1).env
+          })(_classPrivateMethodGet(this, _storageKey, _storageKey2).call(this, type));
+        } catch (e) {
+          console.error(e);
+        }
+
+        return data;
+      }
+    }, {
+      key: "clearStorage",
+      value: function clearStorage() {
+        var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : TOKEN_TYPE;
+
+        try {
+          removeStorageSync({
+            env: classPrivateFieldGet(this, _config$1).env
+          })(_classPrivateMethodGet(this, _storageKey, _storageKey2).call(this, type));
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    }, {
+      key: "isExpired",
+      value: function isExpired() {
+        var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+        if (data) {
+          var expirationTime = data.expirationTime;
+
+          if (expirationTime && expirationTime > now$1()) {
+            return false;
+          }
+
+          return true;
+        }
+
+        return true;
+      }
+    }, {
+      key: "setTokenExpires",
+      value: function setTokenExpires() {
+        var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+        if (!t || isNaN(t)) {
+          t = 6800 * 1000;
+        }
+
+        classPrivateFieldSet(this, _expires, +t);
+      }
+    }, {
+      key: "runQueues",
+      value: function runQueues(err, data) {
+        if (classPrivateFieldGet(this, _waitQueues$1) && isArray$2(classPrivateFieldGet(this, _waitQueues$1))) {
+          var len = classPrivateFieldGet(this, _waitQueues$1).length;
+
+          classPrivateFieldGet(this, _waitQueues$1).splice(0, len).forEach(function (_ref) {
+            var resolve = _ref.resolve,
+                reject = _ref.reject;
+
+            if (err) {
+              return reject(err);
+            }
+
+            return resolve(data);
+          });
+        }
+      }
+    }, {
+      key: "getToken",
+      value: function getToken() {
+        var _this2 = this;
+
+        var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+          isRefresh: false
+        },
+            isRefresh = _ref2.isRefresh,
+            scopes = _ref2.scopes;
+
+        return new promise$1(function (resolve, reject) {
+          if (classPrivateFieldGet(_this2, _isTokenReq)) {
+            return classPrivateFieldGet(_this2, _waitQueues$1).push({
+              resolve: resolve,
+              reject: reject
+            });
+          }
+
+          var env = classPrivateFieldGet(_this2, _config$1).env,
+              tokenReqConfig = classPrivateFieldGet(_this2, _config$1).tokenReqConfig,
+              url = tokenReqConfig.url,
+              method = tokenReqConfig.method;
+
+          var storageData = null;
+
+          if (isRefresh) {
+            _this2.emit(TOKEN_BEFORE_REFRESH);
+
+            _this2.clearStorage(TOKEN_TYPE);
+
+            _this2.emit(TOKEN_AFTER_REFRESH);
+          } else {
+            storageData = _this2.getDataFromStorage(TOKEN_TYPE);
+
+            if (storageData && !_this2.isExpired(storageData)) {
+              _this2.emit(TOKEN_BEFORE_CACHE, storageData);
+
+              return setTimeout(function () {
+                resolve(storageData);
+
+                _this2.emit(TOKEN_AFTER_CACHE, storageData);
+              });
+            }
+
+            _this2.emit(TOKEN_EXPIRED);
+
+            _this2.clearStorage(TOKEN_TYPE);
+          }
+
+          _this2.emit(TOKEN_BEFORE_LOGIN);
+
+          classPrivateFieldSet(_this2, _isTokenReq, true);
+
+          getJsCode({
+            env: env,
+            scopes: scopes
+          }).then(function (res) {
+            _this2.tokenReqData.jsCode = res.jsCode;
+
+            _this2.emit(TOKEN_AFTER_LOGIN, res);
+
+            return _this2.middleware.dispatch(_this2, classPrivateFieldGet(_this2, _tokenMiddles$1));
+          }).then(function (ctx) {
+            _this2.emit(TOKEN_BEFORE_REQUEST);
+
+            return request({
+              env: env,
+              url: url,
+              method: method,
+              data: _objectSpread$2({}, ctx.tokenReqData)
+            });
+          }).then(function (res) {
+            _this2.tokenResData = res;
+            return _this2.middleware.dispatch(_this2, classPrivateFieldGet(_this2, _afterMiddles));
+          }).then(function (ctx) {
+            _this2.emit(TOKEN_AFTER_REQUEST, ctx.tokenResData);
+
+            return _this2.set2Storage(TOKEN_TYPE, ctx.tokenResData);
+          }).then(function (resData) {
+            resolve(resData);
+
+            _this2.runQueues(null, resData);
+
+            classPrivateFieldSet(_this2, _isTokenReq, false);
+
+            classPrivateFieldSet(_this2, _waitQueues$1, []);
+          })["catch"](function (err) {
+            reject(err);
+
+            _this2.runQueues(err);
+
+            classPrivateFieldSet(_this2, _isTokenReq, false);
+
+            classPrivateFieldSet(_this2, _waitQueues$1, []);
+          });
+        });
+      }
+    }, {
+      key: "config",
+      get: function get() {
+        return classPrivateFieldGet(this, _config$1);
+      }
+    }, {
+      key: "queue",
+      get: function get() {
+        return this.waitQueues;
+      }
+    }]);
+
+    return MiniAuth;
+  }(Base);
+
+  var _config$1 = new weakMap$1();
+
+  var _waitQueues$1 = new weakMap$1();
+
+  var _tokenMiddles$1 = new weakMap$1();
+
+  var _afterMiddles = new weakMap$1();
+
+  var _userMiddles$1 = new weakMap$1();
+
+  var _expires = new weakMap$1();
+
+  var _isTokenReq = new weakMap$1();
+
+  var _storageKey = new weakSet$1();
+
+  var _storageModel = new weakSet$1();
+
+  var _storageKey2 = function _storageKey2() {
+    var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : TOKEN_TYPE;
+    return "MINI_AUTH:".concat(type, ":").concat(classPrivateFieldGet(this, _config$1).appid);
+  };
+
+  var _storageModel2 = function _storageModel2() {
+    var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : TOKEN_TYPE;
+    var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    return {
+      key: _classPrivateMethodGet(this, _storageKey, _storageKey2).call(this, type),
+      data: {
+        data: data,
+        expires: classPrivateFieldGet(this, _expires),
+        expirationTime: now$1() + classPrivateFieldGet(this, _expires)
+      }
+    };
+  };
+
+  var defaultConfig$2 = {
+    withCredentials: false,
+    env: 'weapp',
+    appid: 'mockAppid',
+    tokenReqConfig: {
+      url: '',
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      },
+      timeout: 10000
+    },
+    userInfoReqConfig: {
+      url: '',
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json'
+      },
+      timeout: 10000
+    }
+  };
+
+  function createInstance() {
+    var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var opts = merge_1(defaultConfig$2, config);
+    checkOpts(opts);
+    return new MiniAuth(opts);
+  }
+
+  var miniAuth = createInstance(defaultConfig$2);
+  miniAuth.create = createInstance;
 
   exports.default = MiniAuth;
   exports.miniAuth = miniAuth;

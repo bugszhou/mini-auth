@@ -250,7 +250,7 @@ class MiniAuth extends Base {
             env,
             url,
             method,
-            headers,
+            headers: headers || this.#config.headers,
             data: {
               ...ctx.tokenReqData,
             }

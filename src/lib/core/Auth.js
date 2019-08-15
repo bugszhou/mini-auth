@@ -201,7 +201,7 @@ class MiniAuth extends Base {
   /**
    * 请求服务端获取token
    */
-  getToken({ isRefresh, scopes, headers } = { isRefresh: false }) {
+  getToken({ isRefresh, scopes } = { isRefresh: false }) {
     return new Promise((resolve, reject) => {
       //
       if (this.#isTokenReq) {
@@ -210,6 +210,7 @@ class MiniAuth extends Base {
       const env = this.#config.env,
         tokenReqConfig = this.#config.tokenReqConfig,
         url = tokenReqConfig.url,
+        headers = tokenReqConfig.headers,
         method = tokenReqConfig.method;
 
       let storageData = null;

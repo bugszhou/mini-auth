@@ -32,7 +32,7 @@ export default function request({
     reqPromise = weappReq({
       url,
       data,
-      header: headers,
+      headers,
       method,
     });
   }

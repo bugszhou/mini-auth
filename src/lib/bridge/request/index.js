@@ -19,6 +19,7 @@ export default function request({
   switch (env) {
   case 'aliapp':
     reqPromise = myReq({
+      self,
       url,
       data,
       headers,
@@ -30,6 +31,7 @@ export default function request({
   case 'weapp':
   default:
     reqPromise = weappReq({
+      self,
       url,
       data,
       headers,

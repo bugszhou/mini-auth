@@ -5,7 +5,7 @@ import weappLogin from '../weapp/login';
 import myLogin from '../aliapp/login';
 
 export default function getJsCode({
-  timeout, env, scopes, force,
+  timeout, env, scopes, force, self,
 } = { env: 'weapp' }) {
   let reqPromise = null;
   checkOpts(merge(defaultConfig, {
@@ -16,13 +16,13 @@ export default function getJsCode({
 
   switch (env) {
   case 'aliapp':
-    reqPromise = myLogin({ scopes });
+    reqPromise = myLogin({ scopes, self });
     break;
   case 'swan':
   case 'ttapp':
   case 'weapp':
   default:
-    reqPromise = weappLogin({ timeout });
+    reqPromise = weappLogin({ timeout, self });
   }
   return reqPromise;
 }

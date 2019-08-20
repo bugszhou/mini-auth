@@ -9,11 +9,13 @@
  */
 import getGlobal from '../../utils/getGlobal';
 import response from '../../core/response';
+import evtEmit from '../../utils/evt';
+import { TOKEN_ALI_BEFORE_REQUEST, TOKEN_ALI_SUCCESS_REQUEST, TOKEN_ALI_FAIL_REQUEST } from '../../core/tokenEvent';
 
 const gloableObj = getGlobal();
 
 export default function({
-  url, data, headers, method, timeout,
+  url, data, headers, method, timeout, self,
 } = { method: 'GET', data: {} }) {
   return new Promise((resolve, reject) => {
     gloableObj.request({
@@ -24,6 +26,9 @@ export default function({
       timeout,
       success: (res) => {
         resolve(response({ errCode: 0, ...res }));
+        evtEmit(self, TOKEN_ALI_SUCCESS_REQUEST, {
+          res,
+        });
       },
       fail: (err) => {
         let errCode = 5006;
@@ -38,7 +43,13 @@ export default function({
           errCode = 5006;
         }
         reject(response({ errCode, ...err }));
+        evtEmit(self, TOKEN_ALI_FAIL_REQUEST, {
+          err,
+        });
       },
+    });
+    evtEmit(self, TOKEN_ALI_BEFORE_REQUEST, {
+      url, data, headers, method, timeout,
     });
   });
 }

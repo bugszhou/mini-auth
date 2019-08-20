@@ -236,6 +236,7 @@ class MiniAuth extends Base {
       this.emit(TOKEN_BEFORE_LOGIN);
       this.#isTokenReq = true;
       login({
+        self: this,
         env,
         scopes,
       })
@@ -248,6 +249,7 @@ class MiniAuth extends Base {
         .then((ctx) => {
           this.emit(TOKEN_BEFORE_REQUEST);
           return request({
+            self: this,
             env,
             url,
             method,

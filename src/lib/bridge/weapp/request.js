@@ -8,9 +8,11 @@
  * @param complete  接口调用结束的回调函数（调用成功、失败都会执行）
  */
 import response from '../../core/response';
+import evtEmit from '../../utils/evt';
+import { TOKEN_WX_BEFORE_REQUEST, TOKEN_WX_SUCCESS_REQUEST, TOKEN_WX_FAIL_REQUEST } from '../../core/tokenEvent';
 
 export default function({
-  url, data, headers, method,
+  url, data, headers, method, self,
 } = { method: 'GET', data: {} }) {
   return new Promise((resolve, reject) => {
     wx.request({
@@ -20,6 +22,9 @@ export default function({
       method,
       success: (res) => {
         resolve(response({ errCode: 0, ...res }));
+        evtEmit(self, TOKEN_WX_SUCCESS_REQUEST, {
+          res,
+        });
       },
       fail: (err) => {
         let errCode = 5003;
@@ -34,7 +39,13 @@ export default function({
           errCode = 5003;
         }
         reject(response({ errCode, ...err }));
+        evtEmit(self, TOKEN_WX_FAIL_REQUEST, {
+          err,
+        });
       },
+    });
+    evtEmit(self, TOKEN_WX_BEFORE_REQUEST, {
+      url, data, headers, method,
     });
   });
 }

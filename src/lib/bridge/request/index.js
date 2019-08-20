@@ -5,7 +5,7 @@ import weappReq from '../weapp/request';
 import myReq from '../aliapp/request';
 
 export default function request({
-  url, timeout, data, headers, method, env,
+  url, timeout, data, headers, method, env, self,
 } = { env: 'weapp' }) {
   let reqPromise = null;
   checkOpts(merge(defaultConfig, {

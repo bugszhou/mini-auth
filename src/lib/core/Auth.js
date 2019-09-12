@@ -1,3 +1,4 @@
+import Promise from 'promise';
 import Base from '../interface';
 import {
   TOKEN_BEFORE_REFRESH,

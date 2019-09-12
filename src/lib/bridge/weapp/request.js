@@ -7,6 +7,7 @@
  * @param fail  接口调用失败的回调函数
  * @param complete  接口调用结束的回调函数（调用成功、失败都会执行）
  */
+import Promise from 'promise';
 import response from '../../core/response';
 import evtEmit from '../../utils/evt';
 import { TOKEN_WX_BEFORE_REQUEST, TOKEN_WX_SUCCESS_REQUEST, TOKEN_WX_FAIL_REQUEST } from '../../core/tokenEvent';

@@ -1,3 +1,4 @@
+import Promise from 'promise';
 import response from './response';
 
 class Middleware {

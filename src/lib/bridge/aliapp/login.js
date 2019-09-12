@@ -5,6 +5,7 @@
  * @param fail  接口调用失败的回调函数
  * @param complete  接口调用结束的回调函数（调用成功、失败都会执行）
  */
+import Promise from 'promise';
 import getGlobal from '../../utils/getGlobal';
 import evtEmit from '../../utils/evt';
 import { TOKEN_ALI_BEFORE_LOGIN, TOKEN_ALI_SUCCESS_LOGIN, TOKEN_ALI_FAIL_LOGIN } from '../../core/tokenEvent';

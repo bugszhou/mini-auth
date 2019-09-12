@@ -7,7 +7,7 @@ import builtins from '@joseph184/rollup-plugin-node-builtins';
 import { terser } from "rollup-plugin-terser";
 
 export default {
-  external: ['events', 'lodash', 'prop-types'],
+  external: ['events', 'lodash', 'prop-types', 'promise'],
   input: 'src/entry/index.js',
   output: [
     // umd，第三方依赖未打包

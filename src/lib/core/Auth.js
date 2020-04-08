@@ -200,6 +200,16 @@ class MiniAuth extends Base {
   }
 
   /**
+   * 修改tokenReqConfig
+   */
+  setTokenReqConfig(key, val = '') {
+    if (key === null || key === undefined) {
+      return null;
+    }
+    this.#config.tokenReqConfig[key] = val;
+  }
+
+  /**
    * 请求服务端获取token
    */
   getToken({ isRefresh, scopes } = { isRefresh: false }) {
@@ -254,7 +264,7 @@ class MiniAuth extends Base {
             env,
             url,
             method,
-            headers: headers || this.#config.headers,
+            headers: tokenReqConfig.headers || this.#config.headers,
             data: {
               ...ctx.tokenReqData,
             }

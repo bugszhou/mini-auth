@@ -1,3 +1,17 @@
+# [2.2.0](https://github.com/bugszhou/mini-auth/compare/v2.0.2...v2.2.0) (2020-04-08)
+
+
+### Bug Fixes
+
+* Use Promise ([fd2daf8](https://github.com/bugszhou/mini-auth/commit/fd2daf8821621d934253be909ceb90bfc8d517e0))
+
+
+### Features
+
+* 增加修改header功能 ([f0b22a8](https://github.com/bugszhou/mini-auth/commit/f0b22a8478822ead009203fc819af1d9c9cb2458))
+
+
+
 ## [2.1.1](https://github.com/bugszhou/mini-auth/compare/v2.1.0...v2.1.1) (2019-09-12)
 
 

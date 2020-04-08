@@ -1,6 +1,6 @@
 {
     "name": "miniapp-auth",
-    "version": "2.1.1",
+    "version": "2.2.0",
     "description": "小程序获取openid登录流程",
     "author": "bugszhou | Email:bugszhou@outlook.com",
     "main": "index.js",

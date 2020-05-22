@@ -1,3 +1,12 @@
+## [2.2.1](https://github.com/bugszhou/mini-auth/compare/v2.2.0...v2.2.1) (2020-05-22)
+
+
+### Features
+
+* 异步调整为同步 ([8cac15f](https://github.com/bugszhou/mini-auth/commit/8cac15f12c75fc1a13bd9db1476289041ccbbc96))
+
+
+
 # [2.2.0](https://github.com/bugszhou/mini-auth/compare/v2.0.2...v2.2.0) (2020-04-08)
 
 

@@ -232,15 +232,14 @@ class MiniAuth extends Base {
         this.emit(TOKEN_AFTER_REFRESH);
       } else {
         storageData = this.getDataFromStorage(TOKEN_TYPE);
+        this.emit(TOKEN_BEFORE_CACHE, storageData);
 
         if (storageData && !this.isExpired(storageData)) {
-          this.emit(TOKEN_BEFORE_CACHE, storageData);
-          return setTimeout(() => {
-            resolve(storageData);
-            this.emit(TOKEN_AFTER_CACHE, storageData);
-          });
+          resolve(storageData);
+          this.emit(TOKEN_AFTER_CACHE, storageData);
+          return;
         }
-        this.emit(TOKEN_EXPIRED);
+        this.emit(TOKEN_EXPIRED, storageData);
         this.clearStorage(TOKEN_TYPE);
       }
 

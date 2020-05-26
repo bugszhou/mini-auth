@@ -102,6 +102,10 @@ class MiniAuth extends Base {
         if (retry > 0) {
           selfSet2Storage.call(this, retry - 1);
         }
+        this.emit(TOKEN_STORAGE_SET_ERR, {
+          reqDta: storageData,
+          err: e,
+        });
       }
       return storageData.data;
     }
@@ -116,6 +120,10 @@ class MiniAuth extends Base {
       data = getStorageSync({ env: this.#config.env })(this.#storageKey(type));
     } catch (e) {
       console.error(e);
+      this.emit(TOKEN_STORAGE_GET_ERR, {
+        reqDta: TOKEN_TYPE,
+        err: e,
+      });
     }
     return data;
   }

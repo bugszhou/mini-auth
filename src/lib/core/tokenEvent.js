@@ -11,6 +11,9 @@ export const TOKEN_AFTER_LOGIN = `${evtNameScope}afterLogin`;
 export const TOKEN_BEFORE_REQUEST = `${evtNameScope}beforeRequest`;
 export const TOKEN_AFTER_REQUEST = `${evtNameScope}afterRequest`;
 
+export const TOKEN_STORAGE_GET_ERR = `${evtNameScope}storage:err:get`;
+export const TOKEN_STORAGE_SET_ERR = `${evtNameScope}storage:err:set`;
+
 export const TOKEN_WX_BEFORE_LOGIN = `${evtNameScope}wx:beforeLogin`;
 export const TOKEN_WX_SUCCESS_LOGIN = `${evtNameScope}wx:successLogin`;
 export const TOKEN_WX_FAIL_LOGIN = `${evtNameScope}wx:failLogin`;

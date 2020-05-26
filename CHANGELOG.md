@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/bugszhou/mini-auth/compare/v2.2.1...v2.3.0) (2020-05-26)
+
+
+### Features
+
+* Storage增加错误上报 ([7e2e153](https://github.com/bugszhou/mini-auth/commit/7e2e15391e3f70b647f66d8268f2f7d82d80e6f4))
+
+
+
 ## [2.2.1](https://github.com/bugszhou/mini-auth/compare/v2.2.0...v2.2.1) (2020-05-22)
 
 
